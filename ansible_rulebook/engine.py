@@ -366,6 +366,9 @@ class RuleSetRunner:
                     action_args,
                     variables_copy,
                 )
+                if "playbook_extra_vars" in action_args:
+                    variables_copy.update(action_args["playbook_extra_vars"])
+                    del action_args["playbook_extra_vars"]
                 action_args = {
                     k: substitute_variables(v, variables_copy)
                     for k, v in action_args.items()
