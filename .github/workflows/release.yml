@@ -12,6 +12,7 @@ jobs:
         env:
           ACTOR: ${{ github.actor }}
           REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ROLE=$(gh api \
           "/repos/$REPO/collaborators/$ACTOR/permission" --jq '.role_name')
