@@ -27,7 +27,7 @@ jobs:
     needs: check_permissions
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -50,7 +50,7 @@ jobs:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           RELEASE_ID: ${{ github.event.release.id }}
         run: |
-          gh release upload "$RELEASE_TAG" dist/* --repo "$GITHUB_REPOSITORY"
+          gh release upload "$RELEASE_TAG" dist/*
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
